@@ -64,18 +64,15 @@ for(let i=0;i<bullets.length;i++){
 //Dark and light mode
 
 let colorsHolder=document.querySelector(".colors-holder");
-let colorsHolderTitle=document.querySelectorAll(".colors-holder h3");
+let colorsHolderTitle=document.querySelector(".colors-holder h3");
 let input1=document.querySelector(".heigh-side .input-field input");
-let input2=document.querySelectorAll(".heigh-side .input-field input")[1];
+let input2=document.querySelectorAll("input")[1];
 
     modeIcons[1].onclick=function(){
         modeIcons[1].classList.add("desactivated");
         mainPage.style.cssText="background-color:black;";
         colorsHolder.style.cssText="background-color:black;";
-        colorsHolderTitle[0].style.cssText="color:white;";
-        colorsHolderTitle[1].style.cssText="color:white;";
-
-
+        colorsHolderTitle.style.cssText="color:white;";
 
         input1.style.cssText="background:black;";
         input2.style.cssText="background:black;";
@@ -105,9 +102,8 @@ let input2=document.querySelectorAll(".heigh-side .input-field input")[1];
 
         mainPage.style.cssText="background-color:white;";
         colorsHolder.style.cssText="background-color:white;";
-        colorsHolderTitle[0].style.cssText="color:black;";
-        colorsHolderTitle[1].style.cssText="color:black;";
-
+        colorsHolderTitle.style.cssText="color:black;";
+        
         input1.style.cssText="background:white;";
         input2.style.cssText="background:white;";
         
@@ -140,9 +136,8 @@ let input2=document.querySelectorAll(".heigh-side .input-field input")[1];
 
     mainPage.style.cssText=`background-color:${BackColor};`;
     colorsHolder.style.cssText=`background-color:${BackColor};`;
-    colorsHolderTitle[0].style.cssText=`color:${FontColor};`;
-    colorsHolderTitle[1].style.cssText=`color:${FontColor};`;
-
+    colorsHolderTitle.style.cssText=`color:${FontColor};`;
+  
     input1.style.cssText=`background-color:${BackColor};`;
     input2.style.cssText=`background-color:${BackColor};`;
     
@@ -152,113 +147,13 @@ let input2=document.querySelectorAll(".heigh-side .input-field input")[1];
 
    //Randomly Change Background
 
-    let highSide=document.querySelector(".high-side-back");
+   //    background-image: url(/images/study1.jfif);
 
-    let backButtons=document.querySelectorAll(".back-inputs input");
-
-    backButtons.forEach(function(elt){
-        elt.onclick=function(){
-
-            window.localStorage.setItem("backDecision",`${elt.value}`);
-
-            if(elt.value=="Yes"){
-               
-                    randomBacks();
-
-            }
-            
-            else{
-                
-                stableBack();
-                clearInterval(backInterval);
-
-            }
-        }
-    })
-
-    //mrgl
-
-    //work
-    let backInterval;
-    let i=0;
-    let backImagesUrls=["/images/study2.jfif" , "/images/study3.jfif" , "/images/study4.jfif" , "/images/study5.jfif" , "/images/study6.jfif" ];
-
-    function randomBacks(){
-       
-       let randomArray= getMultipleRandom(backImagesUrls, backImagesUrls.length);
-        
-        
-          backInterval=setInterval(function(){
-
-            highSide.style.cssText="background-image: url(/images/study1.jfif);"
-
-            highSide.style.cssText=`background-image: url(${randomArray[i]});`;
-
-              i++;
-
-              if(i===randomArray.length){
-                
-                i=0;
-                
-              }
-
-         },2000);
-
-    }
-   
+  //    .high-side-back::before
 
 
+    let hideSide=document.querySelector(".high-side-back");
 
-    function getMultipleRandom(arr, num) {
-        const shuffled = [...arr].sort(() => 0.5 - Math.random());
-      
-        return shuffled.slice(0, num);
-      }
+    console.log(hideSide);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   //work
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //mrgl
-
-    function stableBack(){
-        highSide.style.cssText="background-image: url(/images/study1.jfif);"
-    }
-
-    let backDecision=window.localStorage.getItem("backDecision");
-
-    if(backDecision==="No"){
-        stableBack();
-    }
-    else{
-        randomBacks();
-    }

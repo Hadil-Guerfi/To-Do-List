@@ -55,6 +55,7 @@
     background-color:white;
     z-index: -1;
     min-height: 100vh;
+    transition: 0.5s;
   }
 
   .main-page .container{
@@ -72,6 +73,9 @@
     height: 40vh;
     z-index: 3;
     position: relative;
+    background-image: url(/images/study1.jfif);
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   .high-side-back::before{
@@ -81,12 +85,16 @@
     right: 0;
     width: 100%;
     height: 100%;
-    background-image: url(/images/study1.jfif);
-    background-repeat: no-repeat;
-    background-size: cover;
-    opacity: 0.7;
+   background-color: rgb(152, 152, 152);
+    opacity: 0.2;
     z-index: 0;
   }
+
+  .high-side-back input{
+
+
+  }
+
   .high-side-back .container .high-side{
     color: white;
     z-index: 2;
@@ -107,7 +115,7 @@
 
 
 .options i{
-    color: white;
+    color: rgb(70, 70, 70);
     font-size: 22px;
     font-weight: 900;
     width: 40px;
@@ -120,11 +128,12 @@
     align-items: center;
     display: flex;
     margin-bottom: 20px;
-    box-shadow: 1px 0px 15px 1px rgb(57, 55, 55) inset;
+    box-shadow: 1px 0px 15px 1px rgb(166, 163, 163) inset;
 }
 
   .heigh-side h2{
     color: rgb(252, 175, 188);
+    transition: 0.3s;
     font-size: 65px;
     margin-top: 30px;
     margin-bottom: 40px;
@@ -140,13 +149,17 @@
   .input-field{
     position: relative;
     margin-bottom: 20px;
+
   }
+
+ 
 
   .heigh-side .input-field i{
   position: absolute;
   right: 0;
   top:50%;
   color: rgb(252, 175, 188);
+  transition: 0.3s;
   font-weight:900 ;
   font-size:25px;
   transform: translateY(-50%);
@@ -165,27 +178,52 @@
     .colors-holder{
      background-color:white;
      position: absolute;  
-     height: 100px;
+     height: fit-content;
      width: 200px; 
      top: 0;
      left: 0;
      text-align: center;
      display: none;
+     padding-bottom: 15px;
+     text-align: center;
+     z-index: 99;
     }
-    .colors-holder h3{
+    .colors{
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 15px;
+
+    }
+    .background-img-holder h3{
+      color: white;
+      font-size: 18px;
+
+    }
+    .back-inputs{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .background-img-holder input{
+      margin-left: 20px;
+      width: 50px;
+      }
+
+    .colors-holder .colors h3{
       font-size: 20px;
       margin-top: 15px;
     }
+
     .colors-holder::before{
     content: '';
     position: absolute;
     /* background-color: red; */
     top:13px;
-    right:-7px;
-    border: 7px solid transparent; 
-    border-right-color:#ccc;
-
+    right:-9px;
+    border: 9px solid transparent; 
+    border-right-color:rgb(54, 50, 50);
     }
+
+    
 
     .bullets span{
         
@@ -233,6 +271,7 @@
         justify-content: space-between;
         align-items: center;
         padding: 0 10px;
+        transition: 0.3s;
         
     }
 
@@ -274,6 +313,7 @@
 
  .desactivated{
   display: none !important;
+
  }
 
  .mode-icon{
@@ -288,4 +328,19 @@
 
  .mode-icon i:first-child{
   display:none;
+}
+
+.options .gear{
+  animation: rotation 5s linear  infinite ;
+}
+
+@keyframes rotation{
+
+  0%{
+    transform: rotate(0);
+  }
+
+  100%{
+    transform: rotate(360deg);
+  }
 }
