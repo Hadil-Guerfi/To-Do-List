@@ -1,5 +1,9 @@
 
 
+//probleme dans update de locale storarge from actual one
+
+
+
     //Principe de Local Storage ADD
 
 
@@ -10,8 +14,7 @@
     let addedArray=[];//to store in local storage
 
 
-
-
+ 
     let gettedArray=JSON.parse(window.localStorage.getItem("addedArray"));
 
     if(gettedArray!==null){
@@ -25,23 +28,28 @@
             addedArray.push(newTask);
         }
 
+        // givingRightToDelet(); 
+
         givingRightToDelet();
-     
-        editingTask();
+
+        // editingTask();
+
        
     }
-
-
-    btnAdd.onclick=function(){
-
-     if(Status==="block"){
-
     
-    window.alert("close save icon")
+        //test si save btn is oppned:
 
-     }
+       
 
-     else{
+       btnAdd.onclick=function(){
+
+        // if(saveStatus==="block"){
+
+        //     console.log("save before addng task");
+        // }
+
+        // else{
+
         //Acces to span content :
         let taskValue=btnAdd.previousElementSibling.value;
 
@@ -50,26 +58,26 @@
         createTask(taskValue);
 
         taskToSTorage=createObj(taskValue);
+      
 
+        //probleme ici dans added array
         addedArray.push(taskToSTorage);
+
+        console.log(addedArray);
+
 
      }
 
+     window.localStorage.setItem("addedArray",JSON.stringify(addedArray));
+       
      givingRightToDelet();
      
-     editingTask();
-
-     console.log("addedArray to store after add click:");
-     console.log(addedArray);
-
-     window.localStorage.setItem("addedArray",JSON.stringify(addedArray));
+    //  editingTask();
 
      btnAdd.previousElementSibling.value="";
-     
-    }
-
-}
-
+          
+    // }
+        }
 
 
 
@@ -142,6 +150,8 @@
         
         iconsDiv.appendChild(editSave);
 
+        // console.log(iconsDiv);
+
         taskAdded.appendChild(iconsDiv);
         lowSide.appendChild(taskAdded);
      
@@ -191,12 +201,19 @@ function createObj(taskValue){
 
             let tasksAfterDelete=document.querySelectorAll(".task-added");
 
+            // console.log("tasksAfterDelete")
+            // console.log(tasksAfterDelete);
+
             for(let k=0;k<tasksAfterDelete.length;k++){
                 
+                // console.log("tasks after delete");
+
                 taskCreated=createObj(tasksAfterDelete[k].firstChild.firstChild.innerHTML);
 
                 newAddedArray.push(taskCreated);
                 
+                // console.log("new added Array :")
+                // console.log(newAddedArray);
 
             }
 
@@ -209,7 +226,7 @@ function createObj(taskValue){
 
     }
 
-    let Status;
+    let saveStatus;
 
     //Principe de Local Storage Edit
 
@@ -235,8 +252,13 @@ function createObj(taskValue){
             let inputInEdit=tasks[i].firstChild.lastChild;
 
             let taskContentAfterEdit;
+        
+            // console.log(spanInEdit);
+            // console.log(inputInEdit);
 
             btnEdit.onclick=function(){
+
+            // console.log("hello");
             
             btnEdit.style.display="none";     
             
@@ -244,66 +266,64 @@ function createObj(taskValue){
 
             inputInEdit.style.display="block";
             spanInEdit.style.position="absolute";
-
-
-            //get saveBtn status:
             
-            let style1 = getComputedStyle(btnSave);
-
-             Status = style1.display;
-
-             console.log(Status)
-            
-
             inputInEdit.value=taskContent;
 
             inputInEdit.onfocus=function(){
             
                 //To give right to write in inpute field
 
+
             }
 
 
-
+            let style = getComputedStyle(btnSave);
+            let btnStatus = style.display
+            if(btnStatus==="block"){
+                saveStatus="block";
+            }
 
             btnSave.onclick=function(){
 
+
                 newAddedArray=[];
+
+                //changement de task-content in front of me and in local storage happens only after saveBtn click
 
                 btnEdit.style.display="block";
             
                 btnSave.style.display="none";
 
-                let style2 = getComputedStyle(btnSave);
-
-                Status = style2.display;
-
-                console.log(Status)
-
-                    
-
                 inputInEdit.style.display="none";
                 spanInEdit.style.position="relative";
     
+                let style2 = getComputedStyle(btnSave);
+                let btnStatus2 = style.display
+                if(btnStatus2==="none"){
+                    saveStatus="none";
+                }
+
                 taskContentAfterEdit=inputInEdit.value;
+                // console.log(taskContentAfterEdit);
 
                 tasks[i].firstChild.firstChild.innerHTML=taskContentAfterEdit;
 
                 let tasksAfterEdite=document.querySelectorAll(".task-added");
 
+                // console.log(tasksAfterEdite);
+
                for(let j=0;j<tasksAfterEdite.length;j++){
                     
-                    // console.log(tasks[j].firstChild.firstChild);
-
+                    console.log(tasks[j].firstChild.firstChild.innerHTML);
+                    
                     taskCreated=createObj(tasks[j].firstChild.firstChild.innerHTML);
 
                     newAddedArray.push(taskCreated);
                 }
 
-                console.log("new added array after click on save:");
-                console.log(newAddedArray);
                 window.localStorage.setItem("addedArray",JSON.stringify(newAddedArray));
-
+                console.log("new added array");
+                console.log(newAddedArray);
                 }
 
 
@@ -315,4 +335,52 @@ function createObj(taskValue){
 
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

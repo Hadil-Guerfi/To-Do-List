@@ -25,23 +25,18 @@
             addedArray.push(newTask);
         }
 
+        // givingRightToDelet(); 
+
         givingRightToDelet();
-     
-        editingTask();
+
        
     }
 
 
     btnAdd.onclick=function(){
 
-     if(Status==="block"){
 
-    
-    window.alert("close save icon")
 
-     }
-
-     else{
         //Acces to span content :
         let taskValue=btnAdd.previousElementSibling.value;
 
@@ -53,22 +48,18 @@
 
         addedArray.push(taskToSTorage);
 
+
      }
+
+     window.localStorage.setItem("addedArray",JSON.stringify(addedArray));
 
      givingRightToDelet();
      
      editingTask();
 
-     console.log("addedArray to store after add click:");
-     console.log(addedArray);
-
-     window.localStorage.setItem("addedArray",JSON.stringify(addedArray));
-
      btnAdd.previousElementSibling.value="";
      
     }
-
-}
 
 
 
@@ -142,6 +133,8 @@
         
         iconsDiv.appendChild(editSave);
 
+        // console.log(iconsDiv);
+
         taskAdded.appendChild(iconsDiv);
         lowSide.appendChild(taskAdded);
      
@@ -191,12 +184,19 @@ function createObj(taskValue){
 
             let tasksAfterDelete=document.querySelectorAll(".task-added");
 
+            // console.log("tasksAfterDelete")
+            // console.log(tasksAfterDelete);
+
             for(let k=0;k<tasksAfterDelete.length;k++){
                 
+                // console.log("tasks after delete");
+
                 taskCreated=createObj(tasksAfterDelete[k].firstChild.firstChild.innerHTML);
 
                 newAddedArray.push(taskCreated);
                 
+                // console.log("new added Array :")
+                // console.log(newAddedArray);
 
             }
 
@@ -209,7 +209,6 @@ function createObj(taskValue){
 
     }
 
-    let Status;
 
     //Principe de Local Storage Edit
 
@@ -235,8 +234,13 @@ function createObj(taskValue){
             let inputInEdit=tasks[i].firstChild.lastChild;
 
             let taskContentAfterEdit;
+        
+            // console.log(spanInEdit);
+            // console.log(inputInEdit);
 
             btnEdit.onclick=function(){
+
+            // console.log("hello");
             
             btnEdit.style.display="none";     
             
@@ -246,20 +250,13 @@ function createObj(taskValue){
             spanInEdit.style.position="absolute";
 
 
-            //get saveBtn status:
             
-            let style1 = getComputedStyle(btnSave);
-
-             Status = style1.display;
-
-             console.log(Status)
-            
-
             inputInEdit.value=taskContent;
 
             inputInEdit.onfocus=function(){
             
                 //To give right to write in inpute field
+
 
             }
 
@@ -270,38 +267,33 @@ function createObj(taskValue){
 
                 newAddedArray=[];
 
+                //changement de task-content in front of me and in local storage happens only after saveBtn click
+
                 btnEdit.style.display="block";
             
                 btnSave.style.display="none";
-
-                let style2 = getComputedStyle(btnSave);
-
-                Status = style2.display;
-
-                console.log(Status)
-
-                    
 
                 inputInEdit.style.display="none";
                 spanInEdit.style.position="relative";
     
                 taskContentAfterEdit=inputInEdit.value;
+                // console.log(taskContentAfterEdit);
 
                 tasks[i].firstChild.firstChild.innerHTML=taskContentAfterEdit;
 
                 let tasksAfterEdite=document.querySelectorAll(".task-added");
 
+                console.log(tasksAfterEdite);
+
                for(let j=0;j<tasksAfterEdite.length;j++){
                     
-                    // console.log(tasks[j].firstChild.firstChild);
 
                     taskCreated=createObj(tasks[j].firstChild.firstChild.innerHTML);
 
                     newAddedArray.push(taskCreated);
                 }
 
-                console.log("new added array after click on save:");
-                console.log(newAddedArray);
+
                 window.localStorage.setItem("addedArray",JSON.stringify(newAddedArray));
 
                 }
@@ -315,4 +307,61 @@ function createObj(taskValue){
 
 
     }
+
+
+
+    editingTask();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -92,7 +92,7 @@ ul {
 
 .high-side-back input{
 
-  
+
 }
 
 .high-side-back .container .high-side{
@@ -115,7 +115,7 @@ ul {
 
 
 .options i{
-  color: white;
+  color: rgb(70, 70, 70);
   font-size: 22px;
   font-weight: 900;
   width: 40px;
@@ -128,7 +128,7 @@ ul {
   align-items: center;
   display: flex;
   margin-bottom: 20px;
-  box-shadow: 1px 0px 15px 1px rgb(57, 55, 55) inset;
+  box-shadow: 1px 0px 15px 1px rgb(166, 163, 163) inset;
 }
 
 .heigh-side h2{
@@ -178,15 +178,39 @@ margin-right: 5px;
   .colors-holder{
    background-color:white;
    position: absolute;  
-   height: 100px;
+   height: fit-content;
    width: 200px; 
    top: 0;
    left: 0;
    text-align: center;
    display: none;
+   padding-bottom: 15px;
+   text-align: center;
+   z-index: 99;
+   padding-left: 2px;
+   padding-right: 2px;
   }
+  .colors{
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
 
-  .colors-holder h3{
+  }
+  .background-img-holder h3{
+    color: white;
+    font-size: 18px;
+
+  }
+  .back-inputs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:25px;
+  }
+  .background-img-holder input{
+    width: 50px;
+    }
+
+  .colors-holder .colors h3{
     font-size: 20px;
     margin-top: 15px;
   }
